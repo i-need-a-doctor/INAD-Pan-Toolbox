@@ -4,7 +4,7 @@ from mmengine.runner import Runner
 from mmengine.optim.scheduler import MultiStepLR
 
 methods = ["drpnn","msdcnn","pannet","tfnet"]
-sets = ["worldview2_4bands","worldview2_8bands"]
+sets = ["quickbird","worldview2_4bands","worldview2_8bands"]
 
 configs = {}
 for set in sets:

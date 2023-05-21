@@ -26,7 +26,6 @@ class MSDCNN(INADModel):
         self.shallow1 = nn.Conv2d(in_channels=input_channel, out_channels=64, kernel_size=9, stride=1, padding=4, bias=True)
         self.shallow2 = nn.Conv2d(in_channels=64, out_channels=32, kernel_size=1, stride=1, padding=0, bias=True)
         self.shallow3 = nn.Conv2d(in_channels=32, out_channels=output_channel, kernel_size=5, stride=1, padding=2, bias=True)
-        self.relu = nn.ReLU(inplace=True)
 
     def forward(self, x_hrpan, x_lrms, up_lrms=None, gt_hrms=None, mode="predict"):  # x: lms; y: pan
         if up_lrms == None:
@@ -48,8 +47,7 @@ class MSDCNN(INADModel):
         shallow1 = self.relu(self.shallow1(concat))  # Bsx64x64x64
         shallow2 = self.relu(self.shallow2(shallow1))  # Bsx32x64x64
         shallow3 = self.shallow3(shallow2)  # Bsx8x64x64
-        out = torch.add(out5, shallow3)  # Bsx8x64x64
-        output = self.relu(out)  # Bsx8x64x64
+        output = torch.add(out5, shallow3)  # Bsx8x64x64
         if mode == "predict":
             return output
         elif mode == "loss":

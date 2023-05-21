@@ -129,6 +129,4 @@ def MTF_GLP_HPM(pan, hs, sensor="gaussian"):
     # adjustment
     I_MTF_GLP_HPM[I_MTF_GLP_HPM < 0] = 0
     I_MTF_GLP_HPM[I_MTF_GLP_HPM > 1] = 1
-    I_MTF_GLP_HPM = einops.rearrange(I_MTF_GLP_HPM, "w h c -> c h w")
-
     return I_MTF_GLP_HPM

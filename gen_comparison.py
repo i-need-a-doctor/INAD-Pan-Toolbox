@@ -26,7 +26,7 @@ for DL_method_name in DL_method_names:
 frame = dataset[index]
 hr_pan = frame["x_hrpan"]
 lr_ms = frame["x_lrms"]
-hr_ms = frame["gt_hrms"]
+hr_ms = einops.rearrange(frame["gt_hrms"],"C H W -> W H C")
 
 residual_maps = {}
 residual_max = 0

@@ -96,5 +96,4 @@ def GSA(pan, hs):
     # adjustment
     I_GSA[I_GSA < 0] = 0
     I_GSA[I_GSA > 1] = 1
-    I_GSA = einops.rearrange(I_GSA, "w h c -> c h w")
     return I_GSA

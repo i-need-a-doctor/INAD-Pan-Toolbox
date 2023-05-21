@@ -41,5 +41,4 @@ def PCA(pan, hs):
     # adjustment
     I_PCA[I_PCA < 0] = 0
     I_PCA[I_PCA > 1] = 1
-    I_PCA = einops.rearrange(I_PCA, "w h c -> c h w")
     return I_PCA
